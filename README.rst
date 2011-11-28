@@ -2,26 +2,24 @@
 vmod_example
 ============
 
-----------------------
-Varnish Example Module
-----------------------
+---------------------------
+Varnish C++ Example Module
+---------------------------
 
-:Author: Martin Blix Grydeland
-:Date: 2011-05-26
+:Author: Lasse Karstensen
+:Date: 2011-11-28
 :Version: 1.0
 :Manual section: 3
 
 SYNOPSIS
 ========
 
-import example;
+import cplusplus;
 
 DESCRIPTION
 ===========
 
-Example Varnish vmod demonstrating how to write an out-of-tree Varnish vmod.
-
-Implements the traditional Hello World as a vmod.
+Example Varnish vmod that hooks C++ code into Varnish as a vmod.
 
 FUNCTIONS
 =========
@@ -40,7 +38,7 @@ Description
 Example
         ::
 
-                set resp.http.hello = example.hello("World");
+                set resp.http.X-foo = cplusplus.hello("World");
 
 INSTALLATION
 ============

@@ -1,8 +1,8 @@
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (c) 2011 Varnish Software AS])
-AC_INIT([libvmod-example], [trunk])
+AC_INIT([libvmod-cplusplus], [trunk])
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_SRCDIR(src/vmod_example.vcc)
+AC_CONFIG_SRCDIR(src/vmod_cplusplus.vcc)
 AM_CONFIG_HEADER(config.h)
 
 AC_CANONICAL_SYSTEM
@@ -17,6 +17,8 @@ if test "x$ac_cv_prog_cc_c99" = xno; then
 	AC_MSG_ERROR([Could not find a C99 compatible compiler])
 fi
 AC_PROG_CPP
+
+AC_PROG_CXX
 
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
@@ -44,11 +46,22 @@ AC_ARG_VAR([VARNISHSRC], [path to Varnish source tree (mandatory)])
 if test "x$VARNISHSRC" = x; then
 	AC_MSG_ERROR([No Varnish source tree specified])
 fi
+
 VARNISHSRC=`cd $VARNISHSRC && pwd`
 AC_CHECK_FILE([$VARNISHSRC/include/varnishapi.h],
 	[],
 	[AC_MSG_FAILURE(["$VARNISHSRC" is not a Varnish source directory])]
 )
+
+# any third party library you need
+#AC_ARG_VAR([FOOSRC], [path to foo source tree (mandatory)])
+#if test "x$FOOSRC" = x; then
+#	AC_MSG_ERROR([No FOOSRC source tree specified])
+#fi
+#DEVICEATLASSRC=`cd $FOOSRC && pwd`
+
+
+
 
 # Check that varnishtest is built in the varnish source directory
 AC_CHECK_FILE([$VARNISHSRC/bin/varnishtest/varnishtest],
